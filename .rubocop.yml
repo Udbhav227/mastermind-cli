@@ -1,0 +1,8 @@
+AllCops:
+  NewCops: enable
+
+Layout/LineLength:
+  Max: 80
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
