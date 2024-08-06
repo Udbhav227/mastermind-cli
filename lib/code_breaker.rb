@@ -47,15 +47,11 @@ class CodeBreaker
   end
 
   def correct_guesses(guess)
+    exact = exact_guesses(guess)
     guess = guess.chars
     i = 0
-    while i < guess.length
-      if @master_code.include?(guess[i])
-        geuss.delete_at(i)
-      else
-        i += 1
-      end
-    end
-    geuss.length - exact_match
+    @master_code.include?(guess[i]) ? guess.delete_at(i) : i += 1 while i < guess.length
+
+    4 - guess.length - exact
   end
 end
