@@ -27,4 +27,8 @@ module Display
   def last_turn_warning
     'Choose carefully. This is your last chance to win!'
   end
+
+  def game_over_message
+    'Game over. That was a hard code to break! ¯\_(ツ)_/¯'
+  end
 end
