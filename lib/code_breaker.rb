@@ -5,36 +5,57 @@ class CodeBreaker
   include Display
   LAST_TURN = 10
   def play
-    @master_code = '1111'
+    @master_code = '1234'
     puts set_game
     start_turns
   end
 
   def start_turns # rubocop:disable Metrics/MethodLength
     turn = 1
-    input_code = ''
+    guess = ''
     loop do
       show_turn(turn)
-      puts '=> print input code in colored form and show hints'
       puts last_turn_warning if turn == LAST_TURN
-      input_code = gets.chomp
-      break if game_over?(turn, input_code)
+      guess = gets.chomp
+      show_guess_with_hint(guess)
+      break if game_over?(turn, guess)
 
       turn += 1
     end
-    show_end_message(turn, input_code)
+    show_end_message(turn, guess)
   end
 
-  def game_over?(turn, input_code)
-    turn == LAST_TURN || input_code == @master_code || %w[q Q].include?(input_code)
+  def game_over?(turn, guess)
+    turn == LAST_TURN || guess == @master_code || %w[q Q].include?(guess)
   end
 
-  def show_end_message(turn, input_code)
-    if turn == LAST_TURN || %w[q Q].include?(input_code)
+  def show_end_message(turn, guess)
+    if turn == LAST_TURN || %w[q Q].include?(guess)
       puts game_over_message
       reveal_code(@master_code)
     else
       show_win_message
     end
+  end
+
+  def exact_guesses(guess)
+    exact_match = 0
+    @master_code.chars.each_with_index do |char, index|
+      exact_match += 1 if char == guess[index]
+    end
+    exact_match
+  end
+
+  def correct_guesses(guess)
+    guess = guess.chars
+    i = 0
+    while i < guess.length
+      if @master_code.include?(guess[i])
+        geuss.delete_at(i)
+      else
+        i += 1
+      end
+    end
+    geuss.length - exact_match
   end
 end
