@@ -43,7 +43,7 @@ module Display
     guess.each_char { |char| print colorize_bg(char) }
     print ' Hints: '
     hints.each { |hint| print hint_notation(hint) }
-    puts "\nn"
+    puts "\n\n"
   end
 
   def hint_notation(hint)
