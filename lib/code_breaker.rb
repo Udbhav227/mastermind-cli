@@ -35,6 +35,7 @@ class CodeBreaker
       puts game_over_message
       reveal_code(@master_code)
     else
+      show_code(guess)
       show_win_message
     end
   end
