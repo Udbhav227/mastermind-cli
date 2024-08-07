@@ -52,15 +52,17 @@ class CodeBreaker
   end
 
   def find_partial_matches(master, guess)
-    master_chars = master.chars
-    guess_chars = guess.chars
-
-    master_chars.each_with_index do |char, index|
-      if char != guess_chars[index] && guess_chars.include?(char)
-        guess_chars[guess_chars.index(char)] = nil
-      end
+    master_counts = Hash.new(0)
+    guess_counts = Hash.new(0)
+    
+    master.chars.each { |char| master_counts[char] += 1 }
+    guess.chars.each { |char| guess_counts[char] += 1 }
+  
+    partial_matches = 0
+    master_counts.each do |char, count|
+      partial_matches += [count, guess_counts[char]].min if char != guess_counts[char]
     end
-
-    guess_chars.count(&:nil?)
+  
+    partial_matches
   end
 end
