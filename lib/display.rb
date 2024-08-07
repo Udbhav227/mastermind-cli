@@ -2,6 +2,7 @@ require_relative 'instructions'
 require_relative 'formatting'
 
 # class for all text related calls
+# rubocop:disable Layout/LineLength
 module Display
   include Instructions
   include Formatting
@@ -38,10 +39,11 @@ module Display
 
   def show_guess_with_hint(guess)
     hints = generate_hints(guess)
+    puts "\n"
     guess.each_char { |char| print colorize_bg(char) }
     print ' Hints: '
     hints.each { |hint| print hint_notation(hint) }
-    puts ''
+    puts "\nn"
   end
 
   def hint_notation(hint)
@@ -56,3 +58,4 @@ module Display
     puts ''
   end
 end
+# rubocop:enable Layout/LineLength
