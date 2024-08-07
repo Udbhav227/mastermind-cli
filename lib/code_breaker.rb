@@ -5,7 +5,7 @@ class CodeBreaker
   include Display
   LAST_TURN = 10
   def play
-    @master_code = '1234'
+    @master_code = (4.times.map { rand(1..6).to_s }).join
     puts set_game
     start_turns
   end
@@ -17,9 +17,9 @@ class CodeBreaker
       show_turn(turn)
       puts last_turn_warning if turn == LAST_TURN
       guess = gets.chomp
-      show_guess_with_hint(guess)
       break if game_over?(turn, guess)
 
+      show_guess_with_hint(guess)
       turn += 1
     end
     show_end_message(turn, guess)
@@ -31,6 +31,7 @@ class CodeBreaker
 
   def show_end_message(turn, guess)
     if turn == LAST_TURN || %w[q Q].include?(guess)
+      show_code(guess) if turn == LAST_TURN
       puts game_over_message
       reveal_code(@master_code)
     else
@@ -38,20 +39,27 @@ class CodeBreaker
     end
   end
 
-  def exact_guesses(guess)
-    exact_match = 0
-    @master_code.chars.each_with_index do |char, index|
-      exact_match += 1 if char == guess[index]
-    end
-    exact_match
+  def generate_hints(guess, master = @master_code)
+    exact_matches = find_exact_matches(master, guess)
+    partial_matches = find_partial_matches(master, guess)
+
+    (['*'] * exact_matches) + (['?'] * partial_matches)
   end
 
-  def correct_guesses(guess)
-    exact = exact_guesses(guess)
-    guess = guess.chars
-    i = 0
-    @master_code.include?(guess[i]) ? guess.delete_at(i) : i += 1 while i < guess.length
+  def find_exact_matches(master, guess)
+    master.chars.zip(guess.chars).count { |m, g| m == g }
+  end
 
-    4 - guess.length - exact
+  def find_partial_matches(master, guess)
+    master_chars = master.chars
+    guess_chars = guess.chars
+
+    master_chars.each_with_index do |char, index|
+      if char != guess_chars[index] && guess_chars.include?(char)
+        guess_chars[guess_chars.index(char)] = nil
+      end
+    end
+
+    guess_chars.count(&:nil?)
   end
 end
