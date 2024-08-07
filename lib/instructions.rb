@@ -5,7 +5,6 @@ module Instructions
   def instruction
     <<~HEREDOC
 
-    
       #{style_text('How to play Mastermind:', 'underline')}
 
       This is a 1-player game against the computer.
@@ -22,27 +21,24 @@ module Instructions
       As you can see, there can be #{colorize_text('more than one', 'red')} of same number/color.
       In order to  win, the code breaker needs to guess the 'master code; is 12 or less turns.
 
+      #{style_text('Hints:', 'underline')}
+      After each guess, there will be up to four hints to help crack the code.
 
-      #{style_text('Clues:', 'underline')}
-      After each guess, there will be up to four clues to help crack the code.
-
-      #{hint('*')}  This clue means you have 1 correct number in the correct location.
-      #{hint('?')}  This clue means you have 1 correct number, but in the wrong location.
-
+        #{hint_notation('*')} This clue means you have 1 correct number in the correct location.
+        #{hint_notation('?')} This clue means you have 1 correct number, but in the wrong location.
 
       #{style_text('Clue Example:', 'underline')}
-      To continue the example, using the above 'master code' a guess of "1463" would produce 3 clues:
+      To continue the example, using the above 'master code' a guess of "#{colorize_text('1', 'bright_magenta')}#{colorize_text('4', 'bright_green')}#{colorize_text('6', 'red')}#{colorize_text('3', 'bright_yellow')}" would produce 3 Hints:
 
       #{colorize_bg('1')}#{colorize_bg('3')}#{colorize_bg('4')}#{colorize_bg('1')}  Hints: \e[91m\u25CF\e[0m \e[37m\u25CB\e[0m \e[37m\u25CB\e[0m 
-
 
       The guess had 1 correct number in the correct location and 2 correct numbers in a wrong location.
 
       #{style_text("It's time to play!", 'underline')}
       Would you like to be the code MAKER or code BREAKER?
 
-      Press '1' to be the code MAKER
-      Press '2' to be the code BREAKER
+      => Press '1' to be the code MAKER
+      => Press '2' to be the code BREAKER
     HEREDOC
   end
 end
