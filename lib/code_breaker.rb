@@ -17,7 +17,7 @@ class CodeBreaker
     loop do
       show_turn(turn)
       puts last_turn_warning if turn == LAST_TURN
-      guess = gets.chomp
+      guess = user_input
       break if game_over?(@master_code, guess, turn, LAST_TURN)
 
       show_guess_with_hint(guess, @master_code)
@@ -36,5 +36,16 @@ class CodeBreaker
       show_code(guess)
       show_win_message
     end
+  end
+
+  def user_input
+    input = gets.chomp
+    input = input.gsub(/\s+/, '')
+    until input.match?(/^[1-6]{4}$/)
+      puts invalid_code_error
+      input = gets.chomp
+      input = input.gsub(/\s+/, '')
+    end
+    input
   end
 end

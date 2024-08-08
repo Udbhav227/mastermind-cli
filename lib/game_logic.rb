@@ -1,3 +1,5 @@
+require_relative 'display'
+
 # game logic
 module GameLogic
   def game_over?(master, guess, turn, last_turn)

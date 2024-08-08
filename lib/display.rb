@@ -63,5 +63,9 @@ module Display
     guess.each_char { |char| print colorize_bg(char) }
     puts ''
   end
+
+  def invalid_code_error
+    colorize_text('Invalid code! Please enter a 4-digit code using numbers 1-6.', 'red')
+  end
 end
 # rubocop:enable Layout/LineLength

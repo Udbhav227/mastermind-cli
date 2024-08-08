@@ -62,8 +62,11 @@ class CodeMaker
 
   def user_input
     input = gets.chomp
-    unless input.match?(/^[1-6]{4}$/)
-      puts 'Invalid code! Please enter a 4-digit code using numbers 1-6.'
+    input = input.gsub(/\s+/, '')
+    until input.match?(/^[1-6]{4}$/)
+      puts invalid_code_error
+      input = gets.chomp
+      input = input.gsub(/\s+/, '')
     end
     input
   end
