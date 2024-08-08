@@ -19,7 +19,7 @@ module Instructions
       #{colorize_bg('1')}#{colorize_bg('3')}#{colorize_bg('4')}#{colorize_bg('1')}
 
       As you can see, there can be #{colorize_text('more than one', 'red')} of same number/color.
-      In order to  win, the code breaker needs to guess the 'master code; is 12 or less turns.
+      In order to  win, the code breaker needs to guess the 'master code; is 10 or less turns.
 
       #{style_text('Hints:', 'underline')}
 
