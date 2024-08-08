@@ -25,14 +25,14 @@ module Instructions
 
       After each guess, there will be up to four hints to help crack the code.
 
-        #{hint_notation('*')} This clue means you have 1 correct number in the correct location.
-        #{hint_notation('?')} This clue means you have 1 correct number, but in the wrong location.
+        #{hint_notation('*')} This hint means you have 1 correct number in the correct location.
+        #{hint_notation('?')} This hint means you have 1 correct number, but in the wrong location.
 
       #{style_text('Clue Example:', 'underline')}
 
       To continue the example, using the above 'master code' a guess of "#{colorize_text('1', 'bright_magenta')}#{colorize_text('4', 'bright_green')}#{colorize_text('6', 'red')}#{colorize_text('3', 'bright_yellow')}" would produce 3 Hints:
 
-      #{colorize_bg('1')}#{colorize_bg('3')}#{colorize_bg('4')}#{colorize_bg('1')}  Hints: \e[91m\u25CF\e[0m \e[37m\u25CB\e[0m \e[37m\u25CB\e[0m
+      #{colorize_bg('1')}#{colorize_bg('4')}#{colorize_bg('6')}#{colorize_bg('3')}  Hints: \e[91m\u25CF\e[0m \e[37m\u25CB\e[0m \e[37m\u25CB\e[0m
 
       The guess had 1 correct number in the correct location and 2 correct numbers in a wrong location.
 
