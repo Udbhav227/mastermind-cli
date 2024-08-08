@@ -15,4 +15,9 @@ class Game
     breaker = CodeBreaker.new
     breaker.play
   end
+
+  def play_as_maker
+    maker = CodeMaker.new
+    maker.play
+  end
 end
