@@ -1,5 +1,6 @@
 require_relative 'display'
 require_relative 'code_breaker'
+require_relative 'code_maker'
 
 # game flow
 class Game
@@ -11,7 +12,7 @@ class Game
   end
 
   def play_as_breaker
-    breaker = CodeBreaker.new()
+    breaker = CodeBreaker.new
     breaker.play
   end
 end
