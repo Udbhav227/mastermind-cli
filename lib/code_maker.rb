@@ -56,7 +56,7 @@ class CodeMaker
 
       guesses.min.last
     else
-      '1122'
+      (4.times.map { rand(1..6).to_s }).join
     end
   end
 
