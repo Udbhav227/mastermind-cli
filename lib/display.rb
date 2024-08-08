@@ -1,11 +1,13 @@
 require_relative 'instructions'
 require_relative 'formatting'
+require_relative 'game_logic'
 
 # class for all text related calls
 # rubocop:disable Layout/LineLength
 module Display
   include Instructions
   include Formatting
+  include GameLogic
   def show_instruction
     puts instruction
   end
@@ -14,8 +16,12 @@ module Display
     "\nThe computer has set the '#{style_text('master code', 'bold')}' and now it’s time for you to break the code.\n\n"
   end
 
-  def show_turn(turn)
-    puts "#{colorize_text("Turn ##{turn}:", 'bright_yellow')} Type in four numbers (1-6) to guess code, or q to quit game."
+  def show_turn(turn, mode = nil)
+    if mode.nil?
+      puts "#{colorize_text("Turn ##{turn}:", 'bright_yellow')} Type in four numbers (1-6) to guess code, or q to quit game."
+    else
+      puts colorize_text("Computer Turn ##{turn}:", 'bright_magenta')
+    end
   end
 
   def show_win_message
@@ -34,11 +40,11 @@ module Display
   end
 
   def game_over_message
-    "\n\e[95mGame over. That was a hard code to break! ¯\\_(ツ)_/¯\e[0m\n\n"
+    "\e[95mGame over. That was a hard code to break! ¯\\_(ツ)_/¯\e[0m\n\n"
   end
 
-  def show_guess_with_hint(guess)
-    hints = generate_hints(guess)
+  def show_guess_with_hint(guess, master)
+    hints = generate_hints(guess, master)
     puts "\n"
     guess.each_char { |char| print colorize_bg(char) }
     print ' Hints: '
