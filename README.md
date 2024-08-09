@@ -2,19 +2,11 @@
 
 Welcome to **Mastermind CLI**, a command-line version of the classic strategy game Mastermind. In this game, you can play as either a **Code Breaker** or a **Code Maker**, challenging yourself or letting the computer do the thinking!
 
-## ✨ Features
-
-- **Two Play Modes:**
-  - **Code Breaker:** Crack the computer-generated code in 10 moves or less.
-  - **Code Maker:** Create your own 4-digit code and let the computer try to break it in 5 moves or fewer.
-- **🤖 AI-Driven Guessing:** The computer uses a sophisticated minimax algorithm inspired by Donald Knuth's method to efficiently guess the code.
-- **💻 Command-Line Interface:** Simple and easy-to-use interface for an engaging experience.
-
 ## 🎮 How to Play
 
 You can play Mastermind CLI either on Replit or locally on your machine.
 
-### Play on Replit
+### Play on Replit (Online)
 
 [![Run on Repl.it](https://repl.it/badge/github/udbhav227/mastermind-cli)](https://replit.com/github/udbhav227/mastermind-cli)
 
@@ -48,6 +40,15 @@ You can play Mastermind CLI either on Replit or locally on your machine.
    ```bash
    ruby main.rb
    ```
+
+## ✨ Features
+
+- **Two Play Modes:**
+  - **Code Breaker:** Crack the computer-generated code in 10 moves or less.
+  - **Code Maker:** Create your own 4-digit code and let the computer try to break it in 5 moves or fewer.
+- **🤖 AI-Driven Guessing:** The computer uses a sophisticated minimax algorithm inspired by Donald Knuth's method to efficiently guess the code.
+- **💻 Command-Line Interface:** Simple and easy-to-use interface for an engaging experience.
+
 ## 🛠️ How It Works
 
 ### Code Breaker Mode
