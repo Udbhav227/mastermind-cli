@@ -39,13 +39,11 @@ class CodeBreaker
   end
 
   def user_input
-    input = gets.chomp
-    input = input.gsub(/\s+/, '')
-    until input.match?(/^[1-6]{4}$/)
+    loop do
+      input = gets.chomp.gsub(/\s+/, '')
+      return input if input.match?(/^[1-6]{4}$/) || input.downcase == 'q'
+
       puts invalid_code_error
-      input = gets.chomp
-      input = input.gsub(/\s+/, '')
     end
-    input
   end
 end
